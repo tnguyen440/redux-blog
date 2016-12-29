@@ -2,6 +2,14 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/index';
 import { Link } from 'react-router';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+
+const style = {
+  refresh: {
+    display: 'inline-block',
+    position: 'relative',
+  },
+};
 
 class PostsShow extends Component {
     static contextTypes = {
@@ -21,7 +29,9 @@ class PostsShow extends Component {
         const { post } = this.props;
 
         if(!this.props.post) {
-            return <div>Loading...</div>;
+            return (
+                <RefreshIndicator size={40} left={10} top={0} status="loading" style={style.refresh} />
+            );
         }
 
         return (
